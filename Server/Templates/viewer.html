@@ -22,10 +22,6 @@
 				padding: 4px 10px;
 			}
 
-			.header-spacing {
-				margin: 0px 1px;
-			}
-
 			.button:hover {
 				background-color: #3d3d3d;
 			}
@@ -56,19 +52,19 @@
 		<h2>Armored Patrol Radar</h2>
 		<div class="header">
 			<label class="header-spacing" for="UrlInput">Data Url:</label>
-			<input class="header-spacing" id="UrlInput" name="UrlInput" value="localhost:8111">
+			<input class="header-spacing" id="UrlInput" name="UrlInput" value="localhost:8112" size="10">
 
 			<label class="header-spacing" for="MapBoundX">Map Bounds: x</label>
-			<input class="header-spacing" type="number" id="MapBoundX" name="MapBoundX" min="1" max="100000" value="3000">
+			<input class="header-spacing" type="number" id="MapBoundX" name="MapBoundX" min="1" max="100000" value="3000" size="10">
 
 			<label class="header-spacing" for="MapBoundY">y</label>
-			<input class="header-spacing" type="number" id="MapBoundY" name="MapBoundY" min="1" max="100000" value="3000">
+			<input class="header-spacing" type="number" id="MapBoundY" name="MapBoundY" min="1" max="100000" value="3000" size="10">
 
 			<label class="header-spacing" for="OffsetX">Offset: x</label>
-			<input class="header-spacing" type="number" id="OffsetX" name="OffsetX" min="1" max="100000" value="0">
+			<input class="header-spacing" type="number" id="OffsetX" name="OffsetX" min="1" max="100000" value="0" size="10">
 
 			<label class="header-spacing" for="OffsetY">y</label>
-			<input class="header-spacing" type="number" id="OffsetY" name="OffsetY" min="1" max="100000" value="0">
+			<input class="header-spacing" type="number" id="OffsetY" name="OffsetY" min="1" max="100000" value="0" size="10">
 
 			<button class="header-spacing button" id="StartBttn" onclick="Start()">Start</button>
 			<a class="header-spacing button" id="StartBttn" href="">Restart</a>
@@ -87,7 +83,9 @@
 		<div>
 			<h3>Executor Script:</h3>
 			<code>
-				loadstring(game:HttpGet("http://localhost:8112/source"))();
+				loadstring(game:HttpGet("http://localhost:8111/source"))();
+				<br>
+				~ Host should be the same as this web page. ~
 			</code>
 		</div>
 		<img id="MapImg" width="0" height="0" src="Map.png" alt="Png">
@@ -155,7 +153,7 @@
 					Pen.lineTo(Canvas.height, y);
 				}
 
-				Pen.strokeStyle = "rgba(0,0,0, 0.2)";
+				Pen.strokeStyle = "rgba(255, 255, 255, 0.1)";
 				Pen.stroke();
 
 				for (const PlayerInfoIndex in Data.PlayerLocations) {
