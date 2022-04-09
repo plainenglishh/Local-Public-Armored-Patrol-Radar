@@ -106,8 +106,8 @@
 
 			var Canvas = document.getElementById("MapViewport");
 
-			//alert(Canvas);
 			var Pen = Canvas.getContext("2d");
+
 			Pen.textAlign = "center";
 			
 			function StatusText(Text) {
@@ -135,17 +135,14 @@
 			}
 
 			function UpdateData(Data) {
-				
-
-				console.log(OffsetX, OffsetY);
-
 				// Health Data
 
 				ExtraData.innerHTML = `<b>Player:</b> ${Data.LocalData.Name}<br><b>Health:</b> ${Data.LocalData.Health}<br><b>Team:</b> ${Data.LocalData.TeamName}`;
 
 				// Viewport
-				//console.log(Data);
+
 				ClearCanvas();
+
 				Pen.drawImage(MapImg, 0, 0);
 
 				for(var x=0.5;x<=Canvas.width+2;x+=50) {
@@ -163,11 +160,8 @@
 
 				for (const PlayerInfoIndex in Data.PlayerLocations) {
 					const PlayerInfo = Data.PlayerLocations[PlayerInfoIndex];
-					//console.log(PlayerInfo);
 
 					// Translate Data
-					//PlayerInfo.Position.X = -PlayerInfo.Position.X;
-					//PlayerInfo.Position.Y = -PlayerInfo.Position.Y;
 
 					var RadarCoords = RobloxCoordsToRadar(PlayerInfo.Position.X, PlayerInfo.Position.Y);
 

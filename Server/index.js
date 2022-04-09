@@ -4,13 +4,13 @@ const WebSocket = ws.WebSocket;
 const Express = require("express");
 const ViewerServer = Express();
 const Path = require("path");
-
+const config = require("../config.json");
 
 // Ports //
 
 console.log(process.argv)
-const PointerLocation = process.argv[2] || "C:\\Users\\matth\\Documents\\Exemption\\Synapse X\\workspace\\.ApMap";
-const Port = process.argv[3] || 8111;
+const PointerLocation = process.argv[2] || config.WorkspaceFolder;
+const Port = process.argv[3] || config.SocketPort;
 
 // Code //
 
@@ -20,7 +20,7 @@ const Server = new WebSocket.WebSocketServer({
 
 Server.on("connection", function(Connection, Request) {
 	setInterval(function() {
-		const Data = fs.readFileSync(PointerLocation, "utf-8");
+		const Data = fs.readFileSync(PointerLocation + "\\.ApMap", "utf-8");
 		Connection.send(Data);
 	}, 200);
 });
@@ -33,4 +33,4 @@ ViewerServer.get("/source", function(Req, Res) {
 	Res.sendFile(Path.join(__dirname, "../source.lua"));
 });
 
-ViewerServer.listen(8112);
+ViewerServer.listen(process.argv[4] || config.ViewerPort);

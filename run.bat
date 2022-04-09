@@ -1,1 +1,1 @@
-node Server/index.js
+node Server/index.js %1 %2 %3
