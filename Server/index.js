@@ -1,6 +1,10 @@
 const ws = require("ws");
 const fs = require("fs");
 const WebSocket = ws.WebSocket;
+const Express = require("express");
+const ViewerServer = Express();
+const Path = require("path");
+
 
 // Ports //
 
@@ -20,3 +24,13 @@ Server.on("connection", function(Connection, Request) {
 		Connection.send(Data);
 	}, 200);
 });
+
+// Pages //
+
+ViewerServer.use(Express.static(Path.join(__dirname, "Templates")));
+
+ViewerServer.get("/source", function(Req, Res) {
+	Res.sendFile(Path.join(__dirname, "../source.lua"));
+});
+
+ViewerServer.listen(8112);
