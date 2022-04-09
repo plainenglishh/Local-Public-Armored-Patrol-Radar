@@ -58,6 +58,12 @@
 			<label class="header-spacing" for="MapBoundY">y</label>
 			<input class="header-spacing" type="number" id="MapBoundY" name="MapBoundY" min="1" max="100000" value="3000">
 
+			<label class="header-spacing" for="OffsetX">Offset: x</label>
+			<input class="header-spacing" type="number" id="OffsetX" name="OffsetX" min="1" max="100000" value="3000">
+
+			<label class="header-spacing" for="OffsetY">y</label>
+			<input class="header-spacing" type="number" id="OffsetY" name="OffsetY" min="1" max="100000" value="3000">
+
 			<button class="header-spacing button" id="StartBttn" onclick="Start()">Start</button>
 			<a class="header-spacing button" id="StartBttn" href="">Restart</a>
 		</div>
@@ -71,6 +77,14 @@
 			<p id="ExtraData">
 				
 			</p>
+		</div>
+		<div>
+			<h2>Executor Script:</h2>
+			<pre>
+				<code>
+					loadstring(game:HttpGet("http://localhost:8112/source"))()
+				</code>
+			</pre>
 		</div>
 		<img id="MapImg" width="0" height="0" src="Map.png" alt="Png">
 		<script>
