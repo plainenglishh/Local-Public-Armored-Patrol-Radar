@@ -162,8 +162,29 @@
 					// Translate Data
 
 					var RadarCoords = RobloxCoordsToRadar(PlayerInfo.Position.X, PlayerInfo.Position.Y);
+					var DiffCoords = RobloxCoordsToRadar(PlayerInfo.Position.X + (PlayerInfo.Velocity.X * 1.5), PlayerInfo.Position.Y + (PlayerInfo.Velocity.Y * 1.5));
 
 					// Draw Dot
+					if (PlayerInfo.LocalPlayer) {
+						Pen.beginPath();
+						Pen.arc(RadarCoords.X, RadarCoords.Y, 50, 0, 2 * Math.PI);
+						Pen.strokeStyle = "rgba(255, 255, 255, 0.1)";
+						Pen.lineWidth = "5";
+						Pen.stroke();
+						Pen.strokeStyle = PlayerInfo.TeamColor;
+						Pen.lineWidth = "1";
+					}
+
+					if (PlayerInfo.TeamMate && !PlayerInfo.LocalPlayer) {
+						Pen.beginPath();
+						Pen.arc(RadarCoords.X, RadarCoords.Y, 5, 0, 2 * Math.PI);
+						Pen.strokeStyle = "rgba(255, 255, 255, 0.1)";
+						Pen.lineWidth = "5";
+						Pen.stroke();
+						Pen.strokeStyle = PlayerInfo.TeamColor;
+						Pen.lineWidth = "1";
+					}
+
 					Pen.strokeStyle = PlayerInfo.TeamColor;
 					Pen.beginPath();
 					Pen.lineWidth = "1";
@@ -173,7 +194,36 @@
 					// Draw Username
 					Pen.font = "12px Consolas";
 					Pen.fillStyle = `${PlayerInfo.TeamColor}`;
-					Pen.fillText(PlayerInfo.Name, RadarCoords.X, RadarCoords.Y - 7);
+					Pen.fillText(PlayerInfo.Name, RadarCoords.X, RadarCoords.Y - 20);
+
+					// Draw Data
+					Pen.fillText(`Alt: ${Math.round(PlayerInfo.Position.Alt)} | HP: ${PlayerInfo.Health}`, RadarCoords.X, RadarCoords.Y - 7);
+
+					// Velocity Indicator
+					Pen.beginPath();
+					Pen.moveTo(RadarCoords.X, RadarCoords.Y);
+					Pen.lineTo(DiffCoords.X, DiffCoords.Y);
+					Pen.stroke();
+				}
+
+				Pen.font = "12px Consolas";
+				Pen.fillStyle = `rgb(255,255,255)`;
+
+				for (const BoltInfoIndex in Data.Bolts) {
+					const BoltInfo = Data.Bolts[BoltInfoIndex];
+
+					var BoltPos = RobloxCoordsToRadar(BoltInfo[1], BoltInfo[2]);
+					var Text = "";
+
+					if (BoltInfo[0] == "Explosive") {
+						Text = "^";
+					} else if (BoltInfo[0] == "Projectile") {
+						Text = "!";
+					} else if (BoltInfo[0] == "MinorProjectile") {
+						Text = "'";
+					}
+
+					Pen.fillText(Text, BoltPos.X, BoltPos.Y);
 				}
 			}
 
