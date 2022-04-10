@@ -1,6 +1,9 @@
-function RenderFrame(Data) {
+function RenderFrame(Data, CanvasId) {
 	Data = JSON.parse(Data);
-	
+
+	var Canvas = document.getElementById(CanvasId);
+	var Pen = Canvas.getContext("2d");
+
 	function ClearCanvas() {
 		Pen.clearRect(0, 0, Canvas.width, Canvas.height);
 	}

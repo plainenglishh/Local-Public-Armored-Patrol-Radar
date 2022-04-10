@@ -8,7 +8,6 @@ const config = require("../config.json");
 
 // Ports //
 
-console.log(process.argv)
 const PointerLocation = process.argv[2] || config["Workspace Folder"];
 const Port = process.argv[3] || config["Socket Port"];
 
@@ -33,4 +32,5 @@ ViewerServer.get("/source", function(Req, Res) {
 	Res.sendFile(Path.join(__dirname, "../source.lua"));
 });
 
+console.log("Server starting.");
 ViewerServer.listen(process.argv[4] || config["Viewer Port"]);

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://cdn.jsdelivr.net/gh/plainenglishh/Armored-Patrol-Radar@main/renderer.js"></script>
-		<title>Armored Patrol Minimap</title>
+		<script src="https://cdn.jsdelivr.net/gh/plainenglishh/Armored-Patrol-Radar/renderer.js"></script>
+		<title>plainenglish's Local Public Armored Patrol Radar</title>
 		<style>
 			body {
 				font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -123,9 +123,9 @@
 			function UpdateData(Data) {
 				// Health Data
 				
-				RenderFrame(Data); // Imported above
-				Data = JSON.parse(Data);
-				ExtraData.innerHTML = `<b>Player:</b> ${Data.LocalData.Name}<br><b>Health:</b> ${Data.LocalData.Health}<br><b>Team:</b> ${Data.LocalData.TeamName}`;
+				RenderFrame(Data, "MapViewport"); // Imported above
+				var NewData = JSON.parse(Data);
+				ExtraData.innerHTML = `<b>Player:</b> ${NewData.LocalData.Name}<br><b>Health:</b> ${NewData.LocalData.Health}<br><b>Team:</b> ${NewData.LocalData.TeamName}`;
 			}
 
 			function Start() {
