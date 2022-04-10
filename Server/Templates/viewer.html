@@ -122,8 +122,10 @@
 
 			function UpdateData(Data) {
 				// Health Data
+				
+				RenderFrame(Data); // Imported above
+				Data = JSON.parse(Data);
 				ExtraData.innerHTML = `<b>Player:</b> ${Data.LocalData.Name}<br><b>Health:</b> ${Data.LocalData.Health}<br><b>Team:</b> ${Data.LocalData.TeamName}`;
-				RenderFrame(Data);
 			}
 
 			function Start() {
@@ -140,7 +142,7 @@
 				}
 
 				DataSocket.onmessage = function(Event) {
-					UpdateData(JSON.parse(Event.data));
+					UpdateData(Event.data);
 				}
 
 				DataSocket.onerror = function() {
