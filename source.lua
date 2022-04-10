@@ -67,7 +67,7 @@ local function LocalData()
 end
 
 local function ListBolts()
-	if game.GameId ~= 539067902 then return {} end
+	if game.GameId ~= 539067902 or (not game:GetService("Workspace"):FindFirstChild("ActiveBolts")) then return {} end
 
 	local Bolts = {};
 	for _, BoltInstance in pairs(game:GetService("Workspace").ActiveBolts:GetChildren()) do
@@ -83,7 +83,7 @@ local function ListBolts()
 end
 
 local function ListTAP()
-	if game.GameId ~= 539067902 then return {} end
+	if game.GameId ~= 539067902 or (not game:GetService("Workspace"):FindFirstChild("TerrainAp")) then return {} end
 
 	local Obstacles = {};
 	for _, Obj in pairs(game:GetService("Workspace").TerrainAp:GetChildren()) do
