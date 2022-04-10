@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://cdn.jsdelivr.net/gh/plainenglishh/Armored-Patrol-Radar/renderer.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/plainenglishh/Local-Public-Armored-Patrol-Radar/renderer.js"></script>
 		<title>plainenglish's Local Public Armored Patrol Radar</title>
 		<style>
 			body {
@@ -123,7 +123,7 @@
 			function UpdateData(Data) {
 				// Health Data
 				
-				RenderFrame(Data, "MapViewport"); // Imported above
+				RenderFrame(Data, "MapViewport", MapXInput.value, MapYInput.value, MapXOffset.value, MapYOffset.value); // Imported above
 				var NewData = JSON.parse(Data);
 				ExtraData.innerHTML = `<b>Player:</b> ${NewData.LocalData.Name}<br><b>Health:</b> ${NewData.LocalData.Health}<br><b>Team:</b> ${NewData.LocalData.TeamName}`;
 			}

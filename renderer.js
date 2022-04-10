@@ -1,4 +1,4 @@
-function RenderFrame(Data, CanvasId) {
+function RenderFrame(Data, CanvasId, MapXInput, MapYInput, OffsetX, OffsetY) {
 	Data = JSON.parse(Data);
 
 	var Canvas = document.getElementById(CanvasId);
@@ -9,11 +9,11 @@ function RenderFrame(Data, CanvasId) {
 	}
 
 	function RobloxCoordsToRadar(X, Y) {
-		var MapX = MapXInput.value / Canvas.width;
-		var MapY = MapYInput.value / Canvas.height;
+		var MapX = MapXInput / Canvas.width;
+		var MapY = MapYInput / Canvas.height;
 
-		var OffsetX = MapXOffset.value / MapX;
-		var OffsetY = MapYOffset.value / MapY;
+		OffsetX = OffsetX / MapX;
+		OffsetY = OffsetY / MapY;
 
 		var ViewX = Canvas.width - (X / MapX) + OffsetX;
 		var ViewY = Canvas.height - (Y / MapY) + OffsetY;
