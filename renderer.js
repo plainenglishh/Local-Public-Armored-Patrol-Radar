@@ -1,4 +1,6 @@
 function RenderFrame(Data) {
+	Data = JSON.parse(Data);
+	
 	function ClearCanvas() {
 		Pen.clearRect(0, 0, Canvas.width, Canvas.height);
 	}
