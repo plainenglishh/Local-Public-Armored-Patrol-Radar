@@ -6,12 +6,12 @@ local HttpService = game:GetService("HttpService");
 local function CreatePlayerInfo(Player)
 	local X = -1;
 	local Y = -1;
-	local Alt = "0%";
+	local Alt = 0;
 
 	local VX = 0;
 	local VY = 0;
 
-	local Health = 0;
+	local Health = "0%";
 
 	if Player.Character and Player.Character:FindFirstChild("HumanoidRootPart") then
 		X = Player.Character.HumanoidRootPart.Position.X;
@@ -82,13 +82,43 @@ local function ListBolts()
 	return Bolts;
 end
 
+local function ListTAP()
+	if game.GameId ~= 539067902 then return {} end
+
+	local Obstacles = {};
+	for _, Obj in pairs(game:GetService("Workspace").TerrainAp:GetChildren()) do
+		if Obj.Name == "CaptureFlag" then
+			local Gui = Obj.CaptureGui.Captured:FindFirstChild("Name");
+			local colour = Obj.CaptureGui.Captured:FindFirstChild("Gauge");
+			table.insert(Obstacles, {"CapturePoint", math.round(Obj.Position.X), math.round(Obj.Position.Z), Gui.Text, string.format("rgb(%s,%s,%s)", math.round(colour.BackgroundColor3.R * 255), math.round(colour.BackgroundColor3.G * 255), math.round(colour.BackgroundColor3.B * 255))});
+		elseif Obj.Name == "Rock" then
+			table.insert(Obstacles, {"Rock", math.round(Obj.Position.X), math.round(Obj.Position.Z)});
+		end
+	end
+	return Obstacles;
+end
+
+local function ListExplosions()
+	local Explosions = {};
+
+	for _, Explosion in pairs(game:GetService("Workspace"):GetChildren()) do
+		if Explosion:IsA("Explosion") then
+			table.insert(Explosions, {math.round(Explosion.Position.X), math.round(Explosion.Position.Z)});
+		end
+	end
+
+	return Explosions;
+end
+
 while task.wait(0.1) do
 	local Data = {
 		PlayerLocations = {
 			
 		},
 		LocalData = LocalData(),
-		Bolts = ListBolts()
+		Bolts = ListBolts(),
+		TAP = ListTAP(),
+		Explosions = ListExplosions()
 	};
 
 	for _, Player in ipairs(Players:GetPlayers()) do

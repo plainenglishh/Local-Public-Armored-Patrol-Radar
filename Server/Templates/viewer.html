@@ -143,6 +143,60 @@
 
 				Pen.drawImage(MapImg, 0, 0);
 
+				// Projectiles //
+
+				Pen.font = "12px Consolas";
+				Pen.fillStyle = `rgb(255,255,255)`;
+
+				for (const BoltInfoIndex in Data.Bolts) {
+					const BoltInfo = Data.Bolts[BoltInfoIndex];
+
+					var BoltPos = RobloxCoordsToRadar(BoltInfo[1], BoltInfo[2]);
+					var Text = "";
+
+					if (BoltInfo[0] == "Explosive") {
+						Text = "^";
+					} else if (BoltInfo[0] == "Projectile") {
+						Text = "!";
+					} else if (BoltInfo[0] == "MinorProjectile") {
+						Text = "'";
+					}
+
+					Pen.fillText(Text, BoltPos.X, BoltPos.Y);
+				}
+
+				for (const ObjIndex in Data.TAP) {
+					const Obj = Data.TAP[ObjIndex];
+
+					if (Obj[0] == "CapturePoint") {
+						var Pos = RobloxCoordsToRadar(Obj[1], Obj[2]);
+						Pen.font = "14px Consolas";
+						Pen.fillStyle = Obj[4];
+						Pen.fillText(Obj[3].substring(0, 1), Pos.X, Pos.Y + 5);
+
+						Pen.beginPath();
+						Pen.arc(Pos.X, Pos.Y, 10, 0, 2 * Math.PI);
+						Pen.strokeStyle = "rgba(255, 255, 255, 0.1)";
+						Pen.lineWidth = "8";
+						Pen.stroke();
+					} else if (Obj[0] == "Rock") {
+						var Pos = RobloxCoordsToRadar(Obj[1], Obj[2]);
+						Pen.strokeStyle = "rgb(50,50,50)";
+						Pen.beginPath();
+						Pen.lineWidth = "4";
+						Pen.rect(Pos.X, Pos.Y, 2, 2);
+						Pen.stroke();
+
+						Pen.strokeStyle = "rgb(25,25,25)";
+						Pen.beginPath();
+						Pen.lineWidth = "3";
+						Pen.rect(Pos.X, Pos.Y, 2, 2);
+						Pen.stroke();
+					}
+				}
+
+				// Grid //
+
 				for(var x=0.5;x<=Canvas.width+2;x+=50) {
 					Pen.moveTo(x, 0);
 					Pen.lineTo(x, Canvas.width);
@@ -154,7 +208,10 @@
 				}
 
 				Pen.strokeStyle = "rgba(255, 255, 255, 0.1)";
+				Pen.lineWidth = "1";
 				Pen.stroke();
+
+				// Players //
 
 				for (const PlayerInfoIndex in Data.PlayerLocations) {
 					const PlayerInfo = Data.PlayerLocations[PlayerInfoIndex];
@@ -206,24 +263,17 @@
 					Pen.stroke();
 				}
 
-				Pen.font = "12px Consolas";
-				Pen.fillStyle = `rgb(255,255,255)`;
+				// Explosions
 
-				for (const BoltInfoIndex in Data.Bolts) {
-					const BoltInfo = Data.Bolts[BoltInfoIndex];
+				Pen.fillStyle = "rgba(255, 50, 50, 0.3)";
 
-					var BoltPos = RobloxCoordsToRadar(BoltInfo[1], BoltInfo[2]);
-					var Text = "";
-
-					if (BoltInfo[0] == "Explosive") {
-						Text = "^";
-					} else if (BoltInfo[0] == "Projectile") {
-						Text = "!";
-					} else if (BoltInfo[0] == "MinorProjectile") {
-						Text = "'";
-					}
-
-					Pen.fillText(Text, BoltPos.X, BoltPos.Y);
+				for (const ExIndex in Data.Explosions) {
+					const Ex = Data.Explosions[ExIndex];
+					var Pos = RobloxCoordsToRadar(Ex[0], Ex[1]);
+					Pen.beginPath();
+					Pen.arc(Pos.X, Pos.Y, 12, 0, 2 * Math.PI);
+					Pen.lineWidth = "8";
+					Pen.fill();
 				}
 			}
 
