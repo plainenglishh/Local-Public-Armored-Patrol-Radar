@@ -110,7 +110,7 @@ local function ListExplosions()
 	return Explosions;
 end
 
-while task.wait(0.1) do
+while task.wait(0.05) do
 	local Data = {
 		PlayerLocations = {
 			

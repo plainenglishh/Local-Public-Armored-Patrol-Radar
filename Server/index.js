@@ -22,7 +22,7 @@ Server.on("connection", function(Connection, Request) {
 	setInterval(function() {
 		const Data = fs.readFileSync(Path.join(config["Workspace Folder"], "/.ApMap"), "utf-8");
 		Connection.send(Data);
-	}, 100);
+	}, 50);
 });
 
 // Pages //
