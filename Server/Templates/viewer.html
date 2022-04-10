@@ -43,7 +43,7 @@
 			}
 
 			.extra-data {
-				font-family: "consolas";
+				font-family: "Consolas, Courier Bold, Courier";
 				font-size: 14px;
 			}
 		</style>
@@ -109,7 +109,7 @@
 			Pen.textAlign = "center";
 			
 			function StatusText(Text) {
-				Pen.font = "30px Consolas";
+				Pen.font = "30px Consolas, Courier Bold, Courier";
 				Pen.fillText(Text, Canvas.width / 2, Canvas.height / 2);
 			}
 
@@ -145,7 +145,7 @@
 
 				// Projectiles //
 
-				Pen.font = "12px Consolas";
+				Pen.font = "12px Consolas, Courier Bold, Courier";
 				Pen.fillStyle = `rgb(255,255,255)`;
 
 				for (const BoltInfoIndex in Data.Bolts) {
@@ -170,7 +170,7 @@
 
 					if (Obj[0] == "CapturePoint") {
 						var Pos = RobloxCoordsToRadar(Obj[1], Obj[2]);
-						Pen.font = "14px Consolas";
+						Pen.font = "14px Consolas, Courier Bold, Courier";
 						Pen.fillStyle = Obj[4];
 						Pen.fillText(Obj[3].substring(0, 1), Pos.X, Pos.Y + 5);
 
@@ -249,7 +249,7 @@
 					Pen.stroke();
 
 					// Draw Username
-					Pen.font = "12px Consolas";
+					Pen.font = "12px Consolas, Courier Bold, Courier";
 					Pen.fillStyle = `${PlayerInfo.TeamColor}`;
 					Pen.fillText(PlayerInfo.Name, RadarCoords.X, RadarCoords.Y - 20);
 
