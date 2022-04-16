@@ -1,5 +1,7 @@
-function RenderFrame(Data, CanvasId, MapXInput, MapYInput, OffsetX, OffsetY, ShowTag) {
+function RenderFrame(Data, CanvasId, MapXInput, MapYInput, OffsetX, OffsetY, ShowTag, UserIds) {
 	if (ShowTag == null) ShowTag = true;
+	if (UserIds == null) UserIds = false;
+
 	Data = JSON.parse(Data);
 
 	var Canvas = document.getElementById(CanvasId);
@@ -139,7 +141,13 @@ function RenderFrame(Data, CanvasId, MapXInput, MapYInput, OffsetX, OffsetY, Sho
 			// Draw Username
 			Pen.font = "12px Consolas, Courier Bold, Courier";
 			Pen.fillStyle = `${PlayerInfo.TeamColor}`;
-			Pen.fillText(PlayerInfo.Name, RadarCoords.X, RadarCoords.Y - 20);
+			var Text = "";
+			if (UserIds) {
+				Text = PlayerInfo.Id;
+			} else {
+				Text = PlayerInfo.Name;
+			}
+			Pen.fillText(Text, RadarCoords.X, RadarCoords.Y - 20);
 
 			// Draw Data
 			Pen.fillText(`Alt: ${Math.round(PlayerInfo.Position.Alt)} | HP: ${PlayerInfo.Health}`, RadarCoords.X, RadarCoords.Y - 7);
