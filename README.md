@@ -3,7 +3,7 @@
 
 Welcome to the main repository for LPAPR, a radar system for Armored Patrol v9.5. This project is developed and maintained by [plainenglish](https://www.roblox.com/users/56098303/profile).
 
-This Repro hosts:
+This Repo hosts:
 - The source code for the Rendering Engine.
 - The source for the Client files.
 - The viewer application.
